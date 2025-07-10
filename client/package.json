@@ -38,8 +38,6 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "postinstall": "npm ls @babel/core && npm ls babel-preset-react-app"
-
-
     },
     "eslintConfig": {
         "extends": [
@@ -75,6 +73,8 @@
     "resolutions": {
         "typescript": "^4.9.5",
         "ajv": "^6.12.6",
-        "ajv-keywords": "^3.5.2"
+        "ajv-keywords": "^3.5.2",
+        "@babel/core": "^7.21.0",
+        "babel-preset-react-app": "^10.1.0"
     }
 }
