@@ -36,7 +36,10 @@
         "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
         "vercel-build": "npm install --legacy-peer-deps && NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "postinstall": "npm ls @babel/core && npm ls babel-preset-react-app"
+
+
     },
     "eslintConfig": {
         "extends": [
