@@ -45,9 +45,9 @@ REACT_APP_ELEVENLABS_API_KEY=your_elevenlabs_key_here
 
 #### 📍 Backend URL
 ```bash
-REACT_APP_API_URL=http://localhost:5000
+REACT_APP_API_URL=https://agri-connect-1-1ubj.onrender.com
 ```
-For production, change to your deployed backend URL.
+✅ **Already configured!** Your backend is deployed on Render.
 
 ### Step 3: Optional APIs (Can skip initially)
 

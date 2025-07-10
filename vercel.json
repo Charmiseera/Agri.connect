@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "buildCommand": "cd client && npm install --legacy-peer-deps && NODE_OPTIONS=--openssl-legacy-provider npm run build:unix",
+  "outputDirectory": "client/build",
+  "framework": null,
+  "installCommand": "cd client && npm install --legacy-peer-deps",
+  "env": {
+    "NODE_OPTIONS": "--openssl-legacy-provider",
+    "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
+  }
+}
