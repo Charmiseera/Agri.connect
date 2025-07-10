@@ -45,10 +45,20 @@ mongoose.connect(process.env.MONGODB_URI, {
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// Configure Google Cloud Speech client
-const speechClient = new SpeechClient({
-  keyFilename: path.join(__dirname, 'google-credentials.json'),
-});
+// Configure Google Cloud Speech client (optional)
+let speechClient = null;
+try {
+  if (fs.existsSync(path.join(__dirname, 'google-credentials.json'))) {
+    speechClient = new SpeechClient({
+      keyFilename: path.join(__dirname, 'google-credentials.json'),
+    });
+    console.log('Google Speech API initialized');
+  } else {
+    console.log('Google credentials not found - Speech API disabled');
+  }
+} catch (error) {
+  console.log('Google Speech API not available:', error.message);
+}
 
 // Configure upload middleware for audio files
 const audioUpload = multer({ 
@@ -67,6 +77,12 @@ app.use('/api/crop', cropRoutes);
 // Speech-to-text API endpoint
 app.post('/api/speech/transcribe', audioUpload.single('audio'), async (req, res) => {
   try {
+    if (!speechClient) {
+      return res.status(503).json({ 
+        error: 'Speech recognition service not available. Please use browser-based speech recognition instead.' 
+      });
+    }
+
     if (!req.file) {
       return res.status(400).json({ error: 'No audio file provided' });
     }
@@ -133,5 +149,5 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on ${PORT}`);
 });
