@@ -21,48 +21,17 @@ const multer = require('multer');
 const app = express();
 
 // Configure CORS - Allow all origins for deployment
-const corsOptions = {
+app.use(cors({
   origin: function (origin, callback) {
-    // Allow all origins for now (including undefined for same-origin requests)
+    // Allow all origins
     callback(null, true);
   },
   credentials: true,
-  optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
-};
-
-app.use(cors(corsOptions));
-
-// Debug CORS
-app.use((req, res, next) => {
-  console.log('CORS Debug - Origin:', req.get('Origin'));
-  console.log('CORS Debug - Method:', req.method);
-  console.log('CORS Debug - Headers:', req.headers);
-  next();
-});
+}));
 
 app.use(express.json());
-
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
-    timestamp: new Date().toISOString(),
-    cors: 'enabled for all origins',
-    origin: req.get('Origin') || 'no-origin'
-  });
-});
-
-// Root endpoint
-app.get('/', (req, res) => {
-  res.json({ 
-    message: 'Agri-Connect API Server',
-    status: 'running',
-    cors: 'enabled for all origins',
-    origin: req.get('Origin') || 'no-origin'
-  });
-});
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -175,6 +144,15 @@ app.post('/api/speak', async (req, res) => {
     console.error('TTS Error:', err);
     res.status(500).json({ error: 'TTS failed', details: err.message });
   }
+});
+
+// Root endpoint for health check
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Agri-Connect API is running!',
+    status: 'OK',
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Error handling middleware
