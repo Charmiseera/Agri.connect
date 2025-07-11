@@ -107,7 +107,7 @@ const App = () => {
                 component={AdminDashboard}
                 role="admin"
               />
-              // SDG Knowledge Hub routes
+              {/* SDG Knowledge Hub routes */}
               <Route exact path="/sdg-knowledge" component={LearnHome} />
               <Route exact path="/sdg-knowledge/organic-farming" component={OrganicFarming} />
               <Route exact path="/sdg-knowledge/modern-technology" component={ModernTechnology} />

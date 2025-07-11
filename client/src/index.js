@@ -5,7 +5,7 @@ import App from './App';
 import axios from 'axios';
 
 // Set base URL for all axios requests
-axios.defaults.baseURL = 'https://backendforagri-production.up.railway.app';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://agri-connect-1-1ubj.onrender.com';
 
 // Get the root element
 const container = document.getElementById('root');
