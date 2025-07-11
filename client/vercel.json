@@ -6,6 +6,11 @@
     "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
     "REACT_APP_API_URL": "https://agri-connect-1-1ubj.onrender.com"
   },
+  "build": {
+    "env": {
+      "REACT_APP_API_URL": "https://agri-connect-1-1ubj.onrender.com"
+    }
+  },
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "build",
   "routes": [
