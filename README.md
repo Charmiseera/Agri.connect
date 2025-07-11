@@ -81,7 +81,6 @@ AgriConnect aims to revolutionize the agricultural supply chain by:
 - React.js with Redux for state management
 - React Router for navigation
 - Tailwind CSS for responsive design
-- i18next for internationalization
 - OpenAI API integration for intelligent chatbot
 - Web Speech API and third-party voice services
 
